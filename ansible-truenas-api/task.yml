@@ -1,6 +1,6 @@
 ---
 - name: Checks if there is an update available from update server.
-  ansible.builtin.uri::
+  uri:
     method: POST
     url: https://{{ item.ip }}:444/api/v2.0/update/check_available
     return_content: true
@@ -11,7 +11,7 @@
   register: truenas_pending_updates
 
 - name: Downloads (if not already in cache) and apply an update.
-  ansible.builtin.uri::
+  uri:
     method: POST
     url: https://{{ item.ip }}/api/v2.0/update/update
     return_content: true

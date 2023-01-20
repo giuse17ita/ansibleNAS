@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: nas_host
   gather_facts: false
 
   vars:

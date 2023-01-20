@@ -20,7 +20,7 @@
       Content-Type: application/json
       Authorization: 'Bearer {{ item.token }}'
   when: "truenas_pending_updates.json.status == 'AVAILABLE'"
-  - name: Wait for update to finish.
+- name: Wait for update to finish.
   uri:
     method: POST
     url: https://{{ item.ip }}/api/v2.0/update/check_available

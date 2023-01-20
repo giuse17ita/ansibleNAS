@@ -5,6 +5,7 @@
   vars:
     sites:
       - ip: '{{ var_host }}'
+        port: '{{var_port}}'
         token: '{{ var_token }}'
         validate_certs: false
  

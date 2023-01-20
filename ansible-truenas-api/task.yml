@@ -2,7 +2,7 @@
 - name: Checks if there is an update available from update server.
   uri:
     method: POST
-    url: https://{{ item.ip }}:444/api/v2.0/update/check_available
+    url: https://{{ item.ip }}:{{ item.port }}/api/v2.0/update/check_available
     return_content: true
     validate_certs: '{{ item.validate_certs }}'
     headers:
@@ -13,7 +13,7 @@
 - name: Downloads (if not already in cache) and apply an update.
   uri:
     method: POST
-    url: https://{{ item.ip }}/api/v2.0/update/update
+    url: https://{{ item.ip }}:{{ item.port }}/api/v2.0/update/update
     return_content: true
     validate_certs: '{{ item.validate_certs }}'
     headers:
@@ -23,7 +23,7 @@
 - name: Wait for update to finish.
   uri:
     method: POST
-    url: https://{{ item.ip }}/api/v2.0/update/check_available
+    url: https://{{ item.ip }}:{{ item.port }}/api/v2.0/update/check_available
     return_content: true
     validate_certs: '{{ item.validate_certs }}'
     headers:
@@ -38,7 +38,7 @@
 - name: Reboot host
   uri:
     method: POST
-    url: https://{{ item.ip }}/api/v2.0/system/reboot
+    url: https://{{ item.ip }}:{{ item.port }}/api/v2.0/system/reboot
     return_content: true
     validate_certs: '{{ item.validate_certs }}'
     headers:
@@ -49,7 +49,7 @@
 - name: Returns whether the system completed boot and is ready to use.
   uri:
     method: GET
-    url: https://{{ item.ip }}/api/v2.0/system/state
+    url: https://{{ item.ip }}:{{ item.port }}/api/v2.0/system/state
     return_content: true
     validate_certs: '{{ item.validate_certs }}'
     headers:
